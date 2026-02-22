@@ -35,7 +35,12 @@ class AuthController extends Controller
     {
         $user = Auth::user();
 
-        $token = JWTAuth::fromUser($user);
+        $customClaims = [
+            'name'  => $user->name,
+            'email' => $user->email,
+        ];
+
+        $token = JWTAuth::claims($customClaims)->fromUser($user);
 
         return redirect("http://127.0.0.1:8001/sso-login?token=".$token);
     }
