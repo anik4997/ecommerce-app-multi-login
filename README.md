@@ -60,6 +60,24 @@ DB_PASSWORD=
 SESSION_COOKIE=ecommerce_session
 SESSION_DRIVER=file
 ```
+### JWT Installation & Setup:
+
+## Install package:
+```bash
+composer require tymon/jwt-auth
+```
+## Publish config:
+```bash
+php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+```
+## Generate secret key:
+```bash
+php artisan jwt:secret
+```
+## This adds to .env:
+```bash
+JWT_SECRET=place_generated_secret_here
+```
 
 ### Run Migrations:
 
