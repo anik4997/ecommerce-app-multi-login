@@ -18,8 +18,8 @@
             <div class="card shadow p-4">
                 <h4>Welcome, {{ auth()->user()->email }}</h4>
 
-                <a href="{{ route('gotoFoodpanda') }}" class="btn btn-success mt-3">
-                    Go to Foodpanda
+                <a href="{{ route('gotoFoodpanda') }}" class="btn btn-success mt-3" target="_blank">
+                    Login to Foodpanda
                 </a>
             </div>
         </div>

@@ -53,28 +53,14 @@ class AuthController extends Controller
     }
     public function logout(Request $request)
     {
-        $user = Auth::user();
-
-        if ($user) {
-            if ($request->session()->has('jwt_token')) {
-                $token = $request->session()->get('jwt_token');
-                try {
-                    JWTAuth::setToken($token)->invalidate();
-                } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
-                }
-            }
+        if (Auth::check()) {
 
             Auth::logout();
+
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-
-            if ($request->session()->has('jwt_token')) {
-                Http::post(config('app.foodpanda_url') . '/sso-logout', [
-                    'email' => $user->email
-                ]);
-            }
         }
 
-        return redirect('/')->with('success', 'Logged out from all apps!');
+        return redirect('/')->with('success', 'Logged out from e-commerce!');
     }
 }
